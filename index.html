@@ -19,4 +19,5 @@ Total output lines: 19
 (function(){const old=window.renderQuestionBank;window.renderQuestionBank=function(){old();document.querySelectorAll('.qcard').forEach(card=>{card.addEventListener('click',()=>{const qid=(card.textContent.match(/Q\d{3}/)||[])[0];const q=QUESTIONS.find(x=>x.id===qid);if(!q)return;card.classList.toggle('open');let a=card.querySelector('.qanswer');if(!a){a=document.createElement('div');a.className='qanswer';a.innerHTML='<b>深度解析</b><div>'+ (q.deep||'暂无深度解析')+'</div>'+(q.steps&&q.steps.length?'<b>答题步骤</b><ol>'+q.steps.map(s=>'<li>'+s+'</li>').join('')+'</ol>':'')+(q.pitfalls?'<div class="muted"><b>注意：</b>'+q.pitfalls+'</div>':'');card.appendChild(a)}a.style.display=card.classList.contains('open')?'block':'none';});});};
 })();
 </script>
+<script>try{renderQuestionBank()}catch(e){}</script>
 
