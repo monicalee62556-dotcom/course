@@ -21,3 +21,13 @@ Total output lines: 19
 </script>
 
 
+
+<script>
+document.addEventListener('click',function(e){
+ var card=e.target.closest('.qcard'); if(!card)return;
+ var id=(card.textContent.match(/Q\\d{3}/)||[])[0]; var q=window.QUESTIONS&&QUESTIONS.find(function(x){return x.id===id}); if(!q)return;
+ card.classList.toggle('open'); var a=card.querySelector('.qanswer');
+ if(!a){a=document.createElement('div');a.className='qanswer';a.innerHTML='<b>深度解析</b><div>'+(q.deep||'暂无深度解析')+'</div>'+(q.formula?'<div class="formula"><code>'+q.formula+'</code></div>':'');card.appendChild(a)}
+ a.style.display=card.classList.contains('open')?'block':'none';
+});
+</script>
