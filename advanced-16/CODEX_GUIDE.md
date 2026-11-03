@@ -24,6 +24,13 @@
 9. 不引入不必要的第三方运行依赖；GitHub Pages 静态部署优先。
 10. 修改后执行 `python build.py`、`node --check compiled.js`，并检查浏览器控制台和移动端布局。
 
+## 当前集成状态
+- 16个进阶专题已写入 `advanced-16/advanced-lessons.js`。
+- 中文流程图已写入 `advanced-16/advanced-diagrams.js`，由现有 SVG 图解组件渲染并支持放大。
+- 已接入课程导航、专题筛选、学习进度、自测、术语词典和六类计算器。
+- 根目录 `index.html` 已同步为可直接发布的静态页面。
+- 后续修改请保持源文件与 `index.html` 同步，并完成浏览器回归测试。
+
 ## 交付顺序
 第一阶段：读取并核对 16 篇 Markdown 与现有数据结构。
 第二阶段：建立独立的进阶课程模块和中文 SVG 图解。
