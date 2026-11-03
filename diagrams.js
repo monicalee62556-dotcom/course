@@ -28,6 +28,14 @@ bubbles:['泵噪声和气泡，先分机制',['入口供油与绝压','空气混
 decision:['把技术分歧变成可验证决策',['具体工况与失效','证据 / 未知项','候选方案与取舍','责任 / 验证 / 关闭'],['避免只有主观判断','区分实测与假设','开会不等于完成整改'],'涉及风险时按组织评审与升级流程推进，关闭依赖验证证据。']
 };
 function diagram(kind){
+ const advanced=ADVANCED_DIAGRAMS?.[kind];
+ if(advanced){
+  const colors=['#e7efff','#e5f5ee','#fff2df','#eee9ff'];
+  const cards=advanced.nodes.map((label,i)=>{const x=26+i*202;const lines=label.length>8?[label.slice(0,8),label.slice(8)]:[label];return `<rect x="${x}" y="130" width="176" height="112" rx="15" fill="${colors[i%4]}" stroke="#b7c8d4"/><text x="${x+88}" y="180" text-anchor="middle" fill="#173b45" font-size="19">${esc(lines[0])}</text>${lines[1]?`<text x="${x+88}" y="208" text-anchor="middle" fill="#173b45" font-size="17">${esc(lines[1])}</text>`:''}<text x="${x+88}" y="286" text-anchor="middle" fill="#087f80" font-size="15">${esc(advanced.notes[i])}</text>`}).join('');
+  const arrows=[0,1,2].map(i=>`<path d="M${202+i*202} 186h22" stroke="#466ef1" stroke-width="3" marker-end="url(#arrow)"/>`).join('');
+  const svg=`<figure class="visual"><svg viewBox="0 0 820 420" role="img" aria-label="${esc(advanced.title)}" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#466ef1"/></marker></defs><rect width="820" height="420" rx="16" fill="#f7fbfa"/><text x="30" y="48" fill="#173b45" font-size="23">${esc(advanced.title)}</text>${cards}${arrows}<text x="30" y="365" fill="#638087" font-size="15">中文工程原理示意 · 不按比例 · 具体结构以产品图纸和工况为准</text></svg><figcaption>沿着图中流程逐步理解各环节；此图为教学示意，不是制造图或具体产品剖面。</figcaption><button type="button" class="textbtn" data-action="zoom" data-kind="${esc(kind)}">放大图解 ↗</button></figure>`;
+  return svg;
+ }
  const ink='#173b45',blue='#466ef1',teal='#087f80',amber='#bd721d';
  const T=(x,y,s,size=17,fill=ink,anchor='start')=>`<text x="${x}" y="${y}" fill="${fill}" font-size="${size}" text-anchor="${anchor}">${esc(s)}</text>`;
  const L=(x,y,x2,y2,color=blue,arrow=true)=>`<path d="M${x} ${y}L${x2} ${y2}" stroke="${color}" stroke-width="3" fill="none" ${arrow?'marker-end="url(#arrow)"':''}/>`;
