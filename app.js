@@ -1,6 +1,6 @@
 'use strict';
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-const MODULES=[...new Set(TOPICS.map(t=>t.module))];
+const MODULES=[...new Set(TOPICS.concat(ADVANCED).map(t=>t.module))];
 const ALL=INTRO.concat(TOPICS.map(t=>({...t,...DETAIL[t.id]})),ADVANCED);
 const BYID=Object.fromEntries(ALL.map(t=>[t.id,t]));
 const COURSE_VERSION='beginner-v3-20261031';
